@@ -289,6 +289,12 @@ func getContentID(v reflect.Value, ref string, class string) (contentID string, 
 				return "", fmt.Errorf("Do not have reference field Type %s in %s for multipart", fieldTypeString, lastValType.String())
 			}
 		} else {
+			if recursiveVal.Kind() == reflect.Slice || recursiveVal.Kind() == reflect.Array {
+				if recursiveVal.Len() == 0 {
+					return "", nil
+				}
+				recursiveVal = recursiveVal.Index(0)
+			}
 			recursiveVal = recursiveVal.FieldByName(part)
 		}
 
