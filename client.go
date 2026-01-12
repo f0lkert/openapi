@@ -290,10 +290,7 @@ func getContentID(v reflect.Value, ref string, class string) (contentID string, 
 			}
 		} else {
 			if recursiveVal.Kind() == reflect.Slice || recursiveVal.Kind() == reflect.Array {
-				if recursiveVal.Len() == 0 {
-					return "", nil
-				}
-				recursiveVal = recursiveVal.Index(0)
+				return "", fmt.Errorf("Implicit index [0] for slice/array is not allowed when accessing field %s in %s for multipart", part, lastValType.String())
 			}
 			recursiveVal = recursiveVal.FieldByName(part)
 		}
