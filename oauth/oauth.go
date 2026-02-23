@@ -137,11 +137,9 @@ func GenerateCertificate(
 	temp := &x509.Certificate{
 		SerialNumber: sn,
 		Subject: pkix.Name{
-			Country:            []string{"TW"},
-			Province:           []string{"Taiwan"},
-			Locality:           []string{"Hsinchu"},
-			Organization:       []string{"free5gc"},
-			OrganizationalUnit: []string{"free5gc"},
+			Country:            []string{"DE"},
+			Locality:           []string{"Berlin"},
+			Organization:       []string{"SRLabs Mobile"},
 		},
 		NotBefore: time.Now(),
 		NotAfter:  time.Now().AddDate(10, 0, 0),
